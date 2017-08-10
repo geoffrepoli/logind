@@ -3,7 +3,7 @@ set -u
 ROOT_DIR=$(dirname "$0")
 
 # check if run.sh and plist are in folder
-if [ ! -f "$ROOT_DIR"/fm.pkg.logindaemon.plist ] || [ ! -f "$ROOT_DIR"/run.sh ]; then
+if [ ! -f "$ROOT_DIR"/com.doggles.logindaemon.plist ] || [ ! -f "$ROOT_DIR"/run.sh ]; then
 	echo "Required files not found"
 	exit 11
 fi
@@ -31,7 +31,7 @@ cp \
 cat > "$ROOT_DIR"/.build/scripts/postinstall <<SCRIPT
 #!/usr/bin/env bash
 chmod +x /usr/local/logindaemon/run.sh
-launchctl load -w /Library/LaunchDaemons/fm.pkg.logindaemon.plist
+launchctl load -w /Library/LaunchDaemons/com.doggles.logindaemon.plist
 SCRIPT
 
 # build package
@@ -39,7 +39,7 @@ pkgbuild \
 	--root "$ROOT_DIR"/.build/ROOT \
 	--scripts "$ROOT_DIR"/.build/scripts \
 	--ownership recommended \
-	--identifier fm.pkg.logindaemon \
+	--identifier com.doggles.logindaemon \
 	"$ROOT_DIR"/deploy.pkg
 
 # cleanup

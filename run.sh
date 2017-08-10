@@ -23,8 +23,8 @@ userLoggedIn()
 # Unloads Launch Daemon and remove plist and script
 cleanup()
 {
-  launchctl unload -w /Library/LaunchDaemons/fm.pkg.logindaemon.plist
-  rm -f /Library/LaunchDaemons/fm.pkg.logindaemon.plist
+  launchctl unload -w /Library/LaunchDaemons/com.doggles.logindaemon.plist
+  rm -f /Library/LaunchDaemons/com.doggles.logindaemon.plist
   rm -rf /usr/local/logindaemon
 }
 

@@ -6,7 +6,7 @@ Mac admins often have login workflows that require both (a) root permissions and
 Download or clone the repository:
 
 ```
-git clone https://github.com/geoffrepoli/logindaemon.git
+git clone https://github.com/doggles/logindaemon.git
 ```
 
 Replace the contents of `loginItems()` in `run.sh` with the command(s) you want to execute at user login.
@@ -20,9 +20,9 @@ cd logindaemon && ./build.sh
 
 An installer package `deploy.pkg` will be created in the root of your logindaemon directory, which you can then use to deploy to end users via MDM or other management tool.
 
-If you intend to build the package installer yourself, make sure you've created the correct file paths in your package root. For reference: the default paths are `/Library/LaunchDaemons/fm.pkg.logindaemon.plist` and `/usr/local/logindaemon/run.sh`.
+If you intend to build the package installer yourself, make sure you've created the correct file paths in your package root. For reference: the default paths are `/Library/LaunchDaemons/com.doggles.logindaemon.plist` and `/usr/local/logindaemon/run.sh`.
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
 

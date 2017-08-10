@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>fm.pkg.logindaemon</string>
+	<string>com.doggles.logindaemon</string>
 	<key>StartInterval</key>
 	<integer>10</integer>
 	<key>RunAtLoad</key>
