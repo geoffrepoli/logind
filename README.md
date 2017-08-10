@@ -23,6 +23,6 @@ An installer package `deploy.pkg` will be created in the root of your logindaemo
 If you intend to build the package installer yourself, make sure you've created the correct file paths in your package root. For reference: the default paths are `/Library/LaunchDaemons/com.doggles.logindaemon.plist` and `/usr/local/logindaemon/run.sh`.
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 
