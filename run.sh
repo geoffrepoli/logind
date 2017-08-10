@@ -10,6 +10,10 @@ loginItems()
   echo "need to use 'sudo'"
 }
 
+
+## -- END CONFIGURATION -- ##
+
+
 # Function returns true if Finder pid is running
 userLoggedIn()
 {
@@ -19,9 +23,9 @@ userLoggedIn()
 # Unloads Launch Daemon and remove plist and script
 cleanup()
 {
-  launchctl unload -w /Library/LaunchDaemons/com.example.name.plist
-  rm -f /Library/LaunchDaemons/com.example.name.plist
-  rm -f /path/to/run_at_login.sh
+  launchctl unload -w /Library/LaunchDaemons/fm.pkg.logindaemon.plist
+  rm -f /Library/LaunchDaemons/fm.pkg.logindaemon.plist
+  rm -rf /usr/local/logindaemon
 }
 
 if userLoggedIn; then

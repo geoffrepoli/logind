@@ -1,7 +1,28 @@
-# Run-At-Login Launch Daemon
+# Login Daemon
 
-*Purpose:* In Mac Admininistration, we often have login workflows that require both (a) root permissions and (b) a user to be logged in (console user). While loginhooks used to serve this purpose, they've since been deprecated. Launch Agents, on the other hand, satisfy (b) but not (a).
+Mac admins often have login workflows that require both (a) root permissions and (b) a user to be logged in (console user). While loginhooks used to serve this purpose, they've since been deprecated. Launch Agents, on the other hand, satisfy (b) but not (a). This tool attempts to solve the issue using a Launch Daemon that checks to see if the user is logged in before running your workflow.
+## Getting Started
 
-This template attempts to solve the issue by using a RunAtLoad Launch Daemon that checks if Finder is running, indicating that a user is logged in. Until Finder is running, the Launch Daemon will check every 10 seconds. Once Finder is running, the script will perform the tasks you've included within the loginItems() function, then remove the Launch Daemon.
+Download or clone the repository:
 
-_NOTE:_ Since the script will unload and remove the Launch Daemon after completion of login items, this cannot be used in its current form for ongoing login tasks.
+```
+git clone https://github.com/geoffrepoli/logindaemon.git
+```
+
+Replace the contents of `loginItems()` in `run.sh` with the command(s) you want to execute at user login.
+## Deployment
+
+Once you've added your login tasks to `run.sh`, use the `build.sh` script to automatically configure a deployable pkg installer. In Terminal, enter the following:
+
+```
+cd logindaemon && ./build.sh
+```
+
+An installer package `deploy.pkg` will be created in the root of your logindaemon directory, which you can then use to deploy to end users via MDM or other management tool.
+
+If you intend to build the package installer yourself, make sure you've created the correct file paths in your package root. For reference: the default paths are `/Library/LaunchDaemons/fm.pkg.logindaemon.plist` and `/usr/local/logindaemon/run.sh`.
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+

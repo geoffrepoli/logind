@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.example.name</string>
+	<string>fm.pkg.logindaemon</string>
 	<key>StartInterval</key>
 	<integer>10</integer>
 	<key>RunAtLoad</key>
 	<true/>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/path/to/run_at_login.sh</string>
+		<string>/usr/local/logindaemon/run.sh</string>
 	</array>
 </dict>
 </plist>
