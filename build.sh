@@ -19,7 +19,7 @@ mkdir -p \
 
 # copy plist
 cp \
-	"$ROOT_DIR"/fm.pkg.logindaemon.plist \
+	"$ROOT_DIR"/com.doggles.logindaemon.plist \
 	"$ROOT_DIR"/.build/ROOT/Library/LaunchDaemons
 
 # copy script
