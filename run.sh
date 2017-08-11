@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+PROJECT=logind
+IDENTIFIER=com.doggles.$PROJECT
 
 # Commands to be run when user logs in
 loginItems()
@@ -23,9 +25,9 @@ userLoggedIn()
 # Unloads Launch Daemon and remove plist and script
 cleanup()
 {
-  launchctl unload -w /Library/LaunchDaemons/com.doggles.logindaemon.plist
-  rm -f /Library/LaunchDaemons/com.doggles.logindaemon.plist
-  rm -rf /usr/local/logindaemon
+  launchctl unload -w /Library/LaunchDaemons/${IDENTIFIER:?}.plist
+  rm -f /Library/LaunchDaemons/${IDENTIFIER:?}.plist
+  rm -rf /usr/local/${PROJECT:?}
 }
 
 if userLoggedIn; then
