@@ -1,6 +1,6 @@
 # LOGIND
 
-Mac admins often have login workflows that require both (a) root permissions and (b) a user to be logged in (console user). While loginhooks used to serve this purpose, they've since been deprecated. Launch agents, on the other hand, satisfy (b) but not (a). **logind** attempts to solve the issue by using a launch daemon to checks if a user is logged in before running your workflow.
+Mac admins often have login workflows that require both (a) root permissions and (b) a user to be logged in (console user). While loginhooks used to serve this purpose, they've since been deprecated. Launch agents, on the other hand, satisfy (b) but not (a). **logind** attempts to solve the issue by using a launch daemon to check if a user is logged in before running your workflow.
 
 ## Getting Started
 
