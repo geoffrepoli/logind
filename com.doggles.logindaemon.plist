@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.doggles.logindaemon</string>
+	<string>com.doggles.logind</string>
 	<key>StartInterval</key>
 	<integer>10</integer>
 	<key>RunAtLoad</key>
 	<true/>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/logindaemon/run.sh</string>
+		<string>/usr/local/logind/run.sh</string>
 	</array>
 </dict>
 </plist>
