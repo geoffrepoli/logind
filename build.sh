@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -u
-PROJECT=logindaemon
+PROJECT=logind
 IDENTIFIER=com.doggles.$PROJECT
 ROOT_DIR=$(dirname "$0")
 
