@@ -7,11 +7,11 @@ ROOT_DIR=$(dirname "$0")
 # check if run.sh and plist are in folder
 if [ ! -f "$ROOT_DIR"/$IDENTIFIER.plist ] || [ ! -f "$ROOT_DIR"/run.sh ]; then
 	echo "Required files not found"
-	exit 11
+	exit 99
 fi
 
 # remove .build/ if exists
-[ -d "$ROOT_DIR"/.build ] && rm -rf "$ROOT_DIR"/.build
+[ -d "$ROOT_DIR"/.build ] && rm -rf "${ROOT_DIR:?}"/.build
 
 # create pkgbuild staging dirs
 mkdir -p \
@@ -45,7 +45,7 @@ pkgbuild \
 	"$ROOT_DIR"/$PROJECT.pkg
 
 # cleanup
-_cleanup() { rm -rf "$ROOT_DIR"/.build; }
+_cleanup() { rm -rf "${ROOT_DIR:?}"/.build; }
 trap '_cleanup' EXIT
 
 exit
