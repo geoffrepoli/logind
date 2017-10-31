@@ -30,7 +30,7 @@ cleanup()
   rm -rf /usr/local/${PROJECT:?}
 }
 
-if userLoggedIn; then
+if userLoggedIn && [[ ! $(stat -f %Su /dev/console) = "_mbsetupuser" ]]; then
   loginItems            # Execute run-at-login workflow
   trap 'cleanup' EXIT   # Remove Launch Daemon on script exit
 fi
