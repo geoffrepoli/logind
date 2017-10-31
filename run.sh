@@ -25,7 +25,7 @@ userLoggedIn()
 # Unloads Launch Daemon and remove plist and script
 cleanup()
 {
-  launchctl unload -w /Library/LaunchDaemons/${IDENTIFIER:?}.plist
+  launchctl remove -F /Library/LaunchDaemons/${IDENTIFIER:?}.plist
   rm -f /Library/LaunchDaemons/${IDENTIFIER:?}.plist
   rm -rf /usr/local/${PROJECT:?}
 }
