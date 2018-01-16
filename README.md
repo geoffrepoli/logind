@@ -7,7 +7,7 @@ Mac admins often have login workflows that require both (a) root permissions and
 Download or clone the repository:
 
 ```
-git clone https://github.com/doggles/logind.git
+git clone https://github.com/geoffrepoli/logind.git
 ```
 
 Replace the contents of `loginItems()` in [run.sh](run.sh) with the command(s) you want to execute at user login.
