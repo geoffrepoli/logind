@@ -17,12 +17,10 @@ Replace the contents of `loginItems()` in [run.sh](run.sh) with the command(s) y
 Once you've added your login tasks to `run.sh`, use the `build.sh` script to automatically configure a deployable pkg installer. In Terminal, enter the following:
 
 ```
-cd logind && ./build.sh
+sudo bash ./build.sh
 ```
 
-An installer package `logind.pkg` will be created in the root of your logind directory, which you can then use to deploy to end users via MDM or other management tool.
-
-If you intend to build the package installer yourself, make sure you've created the correct file paths in your package root. For reference: the default paths are `/Library/LaunchDaemons/com.doggles.logind.plist` and `/usr/local/logind/run.sh`.
+An installer package `logind_<timestamp>.pkg` will be created in the root of your logind directory, which you can then use to deploy to end users via MDM or other management tool. Since you must run `build.sh` as root, you'll likely want to adjust permissions on the pkg with `sudo chown $(id -u):$(id -g) logind_<timestamp>.pkg`.
 
 ## License
 

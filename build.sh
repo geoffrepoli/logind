@@ -1,51 +1,51 @@
 #!/usr/bin/env bash
 set -u
-PROJECT=logind
-IDENTIFIER=com.doggles.$PROJECT
-ROOT_DIR=$(dirname "$0")
 
-# check if run.sh and plist are in folder
-if [ ! -f "$ROOT_DIR"/$IDENTIFIER.plist ] || [ ! -f "$ROOT_DIR"/run.sh ]; then
+ROOT_DIR=$(dirname "$0")
+DATE=$(date +"%Y%m%d%H%M%S")
+
+# Ensure user is running as root
+if [[ $EUID != 0 ]]; then
+	echo "Error: You need to run this script as root"
+	exit 60
+fi
+
+# Check if required files are in folder
+if [[ ! -f "${ROOT_DIR}"/com.doggles.logind.plist ]] || [[ ! -f "${ROOT_DIR}"/run.sh ]]; then
 	echo "Required files not found"
 	exit 99
 fi
 
-# remove .build/ if exists
-[ -d "$ROOT_DIR"/.build ] && rm -rf "${ROOT_DIR:?}"/.build
+# Make postinstall script path
+mkdir "${ROOT_DIR}"/scripts
 
-# create pkgbuild staging dirs
-mkdir -p \
-	"$ROOT_DIR"/.build/ROOT/Library/LaunchDaemons \
-	"$ROOT_DIR"/.build/ROOT/usr/local/$PROJECT \
-	"$ROOT_DIR"/.build/scripts
-
-# copy plist
-cp \
-	"$ROOT_DIR"/$IDENTIFIER.plist \
-	"$ROOT_DIR"/.build/ROOT/Library/LaunchDaemons
-
-# copy script
-cp \
-	"$ROOT_DIR"/run.sh \
-	"$ROOT_DIR"/.build/ROOT/usr/local/$PROJECT
-
-# create postinstall
-cat > "$ROOT_DIR"/.build/scripts/postinstall <<SCRIPT
+# Create postinstall
+cat > "${ROOT_DIR}"/scripts/postinstall <<POSTINSTALL
 #!/usr/bin/env bash
-chmod +x /usr/local/$PROJECT/run.sh
-launchctl load -w /Library/LaunchDaemons/$IDENTIFIER.plist
-SCRIPT
 
-# build package
-pkgbuild \
-	--root "$ROOT_DIR"/.build/ROOT \
-	--scripts "$ROOT_DIR"/.build/scripts \
-	--ownership recommended \
-	--identifier $IDENTIFIER \
-	"$ROOT_DIR"/$PROJECT.pkg
+ROOT_DIR=\$(dirname "\$0")
 
-# cleanup
-_cleanup() { rm -rf "${ROOT_DIR:?}"/.build; }
-trap '_cleanup' EXIT
+mkdir /opt/logind
+
+cp "\${ROOT_DIR}"/run.sh /opt/logind
+cp "\${ROOT_DIR}"/com.doggles.logind.plist /Library/LaunchDaemons
+
+chown root:wheel /opt/logind/run.sh
+chown root:wheel /Library/LaunchDaemons/com.doggles.logind.plist
+chmod 744 /opt/logind/run.sh
+chmod 644 /Library/LaunchDaemons/com.doggles.logind.plist
+
+launchctl load -w /Library/LaunchDaemons/com.doggles.logind.plist
 
 exit
+POSTINSTALL
+
+# Build package
+pkgbuild \
+	--root "$ROOT_DIR" \
+	--install-location /private/tmp \
+	--scripts "${ROOT_DIR}"/scripts \
+	--identifier com.doggles.logind \
+	"${ROOT_DIR}"/logind_"${DATE}".pkg
+
+exit 0

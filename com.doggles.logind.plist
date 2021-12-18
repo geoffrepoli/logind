@@ -10,7 +10,7 @@
 	<true/>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/logind/run.sh</string>
+		<string>/opt/logind/run.sh</string>
 	</array>
 </dict>
 </plist>
