@@ -40,6 +40,8 @@ launchctl load -w /Library/LaunchDaemons/com.doggles.logind.plist
 exit
 POSTINSTALL
 
+chmod +x "${ROOT_DIR}"/postinstall
+
 # Build package
 pkgbuild \
 	--root "$ROOT_DIR" \
